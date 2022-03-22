@@ -48,8 +48,4 @@
       ansible.builtin.debug: update
       register: OUT
 
-    - name: print output of shell command
-      ansible.builtin.debug:
-        msg: "{{OUT}}"
-
 
