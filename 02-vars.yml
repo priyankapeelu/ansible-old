@@ -50,6 +50,6 @@
 
     - name: print output of shell command
       ansible.builtin.debug:
-        msg: ""{{OUT}}"
+        msg: "{{OUT}}"
 
 
