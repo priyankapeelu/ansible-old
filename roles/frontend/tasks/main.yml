@@ -8,10 +8,9 @@
     state: installed
 
 - name: download and extract frontend
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp
-    remote_src: yes
+  include_role:
+    name: common
+    tasks_from: download
 
 - name: Cleanup old html content
   ansible.builtin.file:
