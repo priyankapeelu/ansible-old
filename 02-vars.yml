@@ -45,8 +45,12 @@
   hosts: all
   tasks:
     - name: Run a shell command
-      ansible.builtin.debug: update
+      ansible.builtin.shell: update
       register: OUT
+
+    - name: Print Output of shell command
+      ansible.builtin.debug:
+        msg: "{{OUT}}"
 
 
 
