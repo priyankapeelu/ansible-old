@@ -1,0 +1,3 @@
+- name: print mongodb
+  debug:
+    msg: MongoDB
