@@ -45,7 +45,7 @@
   hosts: all
   tasks:
     - name: Run a shell command
-      ansible.builtin.shell: update
+      ansible.builtin.shell: uptime
       register: OUT
 
     - name: Print Output of shell command
