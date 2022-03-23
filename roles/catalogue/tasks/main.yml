@@ -25,6 +25,6 @@
 
 - name: Copy App Contnent
   ansible.builtin.copy:
-    src: /tmp/catalogue-main
-    dest: /home/roboshop/catalogue
+    src: /tmp/catalogue-main/
+    dest: /home/roboshop/catalogue/
     remote_srs: yes
