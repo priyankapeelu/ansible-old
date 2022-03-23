@@ -1,0 +1,11 @@
+[Unit]
+Description = User Service
+[Service]
+User=roboshop
+Environment=REDIS_HOST=redis.roboshop.internal
+Environment=MONGO_URL="mongodb://mongodb.roboshop.internal:27017/catalogue"
+ExecStart=/bin/node /home/roboshop/catalogue/server.js
+SyslogIdentifier=catalogue
+
+[Install]
+WantedBy=multi-user.target
