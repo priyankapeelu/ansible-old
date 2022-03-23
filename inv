@@ -7,4 +7,4 @@ catalogue.roboshop.internal
 [REDIS]
 redis.roboshop.internal
 [USER]
-172.31.16.226
+user.roboshop.internal
