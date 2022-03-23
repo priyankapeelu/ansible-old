@@ -1,4 +1,4 @@
-- name: configute yum repos.
+- name: configure yum repos
   ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
 
 - name: Install NodeJS
@@ -12,3 +12,19 @@
   ansible.builtin.user:
     name: roboshop
     comment: RoboShop Project Application User
+
+- name: download and extract frontend
+  include_role:
+    name: common
+    tasks_from: download
+
+- name: Cleanup Old Contnent
+  ansible.builtin.file:
+    path: /home/roboshop/catalogue
+    state: absent
+
+- name: Copy App Contnent
+  ansible.builtin.file:
+    path: /tmp/catalogue-main
+    dest: /home/roboshop/catalogue
+    remote_srs: yes
