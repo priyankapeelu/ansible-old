@@ -7,4 +7,4 @@ catalogue.roboshop.internal
 [REDIS]
 redis.roboshop.internal
 [USER]
-user.roboshop.internal
+172.31.16.226
