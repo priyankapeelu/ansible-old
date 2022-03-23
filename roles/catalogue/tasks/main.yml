@@ -18,13 +18,13 @@
     name: common
     tasks_from: download
 
-- name: Cleanup Old Contnent
-  ansible.builtin.file:
-    path: /home/roboshop/catalogue
-    state: absent
+#- name: Cleanup Old Contnent
+#  ansible.builtin.file:
+#    path: /home/roboshop/catalogue
+#    state: absent
 
-- name: Copy App Contnent
-  ansible.builtin.copy:
-    src: /tmp/catalogue-main/
-    dest: /home/roboshop/catalogue/
-    remote_srs: yes
+#- name: Copy App Contnent
+#  ansible.builtin.copy:
+#    src: /tmp/catalogue-main/
+#    dest: /home/roboshop/catalogue/
+#    remote_srs: yes
