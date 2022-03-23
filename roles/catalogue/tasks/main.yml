@@ -35,3 +35,17 @@
   community.general.npm:
     path: /home/roboshop/catalogue
   become_user: roboshop
+
+- name: copy systemd file
+  ansible.builtin.copy:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: start catalogue service
+  ansible.builtin.systemd:
+    name: catalogue
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+
