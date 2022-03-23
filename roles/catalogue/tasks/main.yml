@@ -24,7 +24,7 @@
     state: absent
 
 - name: Copy App Contnent
-  ansible.builtin.file:
+  ansible.builtin.copy:
     path: /tmp/catalogue-main
     dest: /home/roboshop/catalogue
     remote_srs: yes
