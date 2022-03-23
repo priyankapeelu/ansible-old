@@ -16,33 +16,33 @@
 - name: download and extract {{COMPONENT}} content
   include_role:
     name: common
-    tasks_from: download
+    tasks_from: nodejs
 
-- name: Cleanup Old Contnent
+- name: Cleanup Old Content
   ansible.builtin.file:
     path: /home/roboshop/{{COMPONENT}}
     state: absent
 
 - name: Copy App content to {{COMPONENT}}
   ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}-main/
     dest: /home/roboshop/{{COMPONENT}}/
+    src: /tmp/{{COMPONENT}}-main/
     remote_src: yes
-  become_user: roboshop
 
-- name: install nodejs dependencies
+- name: Install NodeJS dependencies
   community.general.npm:
     path: /home/roboshop/{{COMPONENT}}
   become_user: roboshop
 
-- name: copy systemd file
+- name: Copy SystemD file
   ansible.builtin.copy:
     src: systemd.service
     dest: /etc/systemd/system/{{COMPONENT}}.service
 
-- name: Start {{COMPONENT}} service
+- name: Start {{COMPONENT}} Service
   ansible.builtin.systemd:
     name: {{COMPONENT}}
     state: restarted
     enabled: yes
-    deamon_reload: yes
+    daemon_reload: yes
+
