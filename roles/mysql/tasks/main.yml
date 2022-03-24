@@ -1,0 +1,28 @@
+- name: copy mysql repo file
+  ansible.builtin.copy:
+      src: mysql.repo
+      dest: /etc/yum.repos.d/mysql.repo
+
+- name: install mysql server
+  ansible.builtin.yum:
+    name:
+      - mysql-community-server
+      - MySQL- python
+    state: installed
+
+- name: start mysql server
+  ansible.builtin.systemd:
+    name: mysqld
+    state: started
+    enabled: yes
+
+-  name: check the db passwoed by collecting information
+   community.mysql.mysql_info:
+       login_user: root
+       login_password: RobpShop@1
+   ignore_errors: yes
+   register: mysql_stat
+
+- name: reset password
+  debug:
+    msg: "{{mysql_stat}}"
