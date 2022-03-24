@@ -11,3 +11,8 @@
       debug:
         msg: string condition are not true
       when: a != "abc"
+## strings should be quoted in when condition
+    - name: Number1
+      debug:
+        msg: Both numbers are equal
+      when: b == 10
