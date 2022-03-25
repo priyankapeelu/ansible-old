@@ -6,7 +6,7 @@
       - python3-devel
     state: installed
 
-- name: setup app user, download extract and copy content
+- name: setup app user, download extract {{COMPONENT}} content
   include_role:
     name: common
     tasks_from: download
@@ -19,6 +19,18 @@
 - name: print
   debug:
     msg: "{{APP_USER_REGISTER}}"
+
+- name: update user id in app configuration
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: '^uid'
+    line: uid = {{APP_USER_REGISTER.uid}}
+
+- name: update group id in app configuration
+  ansible.builtin.lineinfile:
+    path: /home/roboshop/{{COMPONENT}}/{{COMPONENT}}.ini
+    regexp: '^gid'
+    line: gid = {{APP_USER_REGISTER.group}}
 
 - name: systemd setup
   include_role:
