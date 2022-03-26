@@ -1,0 +1,7 @@
+#if any task is changed and if we want to run another task then handlers comes into picture
+#by default hndlers run at the ending of the play, this behaviour can be changed as ell and run mmediate also.
+
+- name: restart nginx
+  ansible.builtin.systemd:
+    name: nginx
+    state: restarted
