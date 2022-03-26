@@ -27,6 +27,7 @@
   ansible.builtin.copy:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
+  notify: restart nginx
 
 - name: restart nginx
   ansible.builtin.systemd:
