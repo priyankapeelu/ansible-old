@@ -5,13 +5,14 @@ pipeline {
   stages {
 
 
-    stage('do a dry run')
+    stage('do a dry run') {
       steps {
         sh '''
           ansible-playbook roboshop.yml -e HOST=localhost -e role_name=frontend -c
-       '''
+        '''
+      }
     }
-   }
+
   }
 
 }
