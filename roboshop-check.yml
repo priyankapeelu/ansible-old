@@ -42,7 +42,7 @@
   tasks:
     - name: set the facts for the host
       set_fact:
-        INSTANCE_ID: "{{hostvars['localhost']['INSTANCE_ID}}}"
+        INSTANCE_ID: "{{hostvars['localhost']['INSTANCE_ID]}}"
     - name: Import role and terminate the instance
       block:
         - name: Import role
@@ -55,5 +55,5 @@
           delegate_to: 127.0.0.1
           amazon.aws.ec2:
             state: 'absent'
-            instance_ids: '{{ ec2.instance_ids }}'
+            instance_ids: '{{ INSTANCE_ID}}'
             region: us-east-1
