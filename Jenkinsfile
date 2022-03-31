@@ -1,6 +1,13 @@
 pipeline {
   agent any
 
+  options {
+    ansicolor('xterm')
+  }
+
+  environment {
+    SSH = credentials('SSH')
+  }
 
   stages {
 
@@ -8,8 +15,7 @@ pipeline {
     stage('do a dry run') {
       steps {
         sh '''
-          export ANSIBLE_ALLOW_WORLD_READABLE TMPFILES=true
-          ansible-playbook roboshop.yml -e HOST=localhost -e role_name=frontend -c
+          ansible-playbook roboshop-check.yml -e role_name=frontend -e ansible_user=${SSH_USR} -e ansible_password=DevOps321 -e ENV-sandbox
         '''
       }
     }
