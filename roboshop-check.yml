@@ -5,6 +5,7 @@
       amazon.aws.ec2:
         instance_type: t2.micro
         image: ami-04abb9c5182f55efe
+        region: us-east-1
         wait: yes
         group_id: sg-03932f0b41e54e564
         count: 1
