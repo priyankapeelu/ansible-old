@@ -31,19 +31,28 @@
         delay: 30
         timeout: 120
       loop: "{{ ec2.instances }}"
+    - name: set a Instance_ID variable
+      set_fact:
+        INSTANCE_ID: "{{ ec2.instance_ids }}"
 
 - name: Run Role to Test
   hosts: launched
   become: True
   gather_facts: True
   tasks:
+    - name: set the facts for the host
+      set_fact:
+        INSTANCE_ID: "{{hostvars['localhost']['INSTANCE_ID}}}"
     - name: Import role and terminate the instance
       block:
         - name: Import role
-          import_role:
+          debug:
+            msg: Test
+           import_role:
             - name: "{{role_name}}"
     always:
       - name: Terminate instances that were previously launched
+        delegate_to: 127.0.0.1
         amazon.aws.ec2:
           state: 'absent'
           instance_ids: '{{ ec2.instance_ids }}'
