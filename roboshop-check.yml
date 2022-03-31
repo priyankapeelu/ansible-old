@@ -9,6 +9,5 @@
         wait: yes
         group_id: sg-03932f0b41e54e564
         count: 1
-        assign_public_ip: yes
         instance_tags:
           Name: ansible-role-check-instance
