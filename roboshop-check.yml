@@ -1,0 +1,13 @@
+- amazon.aws.ec2: create an Ec2 instance for ansible node testing
+    key_name: localhost
+    tasks:
+      - name: create Ec2 instance
+        amazon.aws.ec2
+           instance_type: t2.micro
+           image: ami-04abb9c5182f55efe
+           wait: yes
+           group_id: sg-03932f0b41e54e564
+           count: 1
+           assign_public_ip: yes
+           instance_tags:
+             Name: ansible-role-check-instance
