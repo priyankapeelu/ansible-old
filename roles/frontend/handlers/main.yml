@@ -2,6 +2,7 @@
 #by default hndlers run at the ending of the play, this behaviour can be changed as ell and run mmediate also.
 
 - name: restart nginx
+  ignore_errors: yes
   ansible.builtin.systemd:
     name: nginx
     state: restarted
