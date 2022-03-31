@@ -46,8 +46,8 @@
     - name: Import role and terminate the instance
       block:
         - name: Import role
-            import_role:
-            - name: "{{role_name}}"
+          import_role:
+            name: "{{role_name}}"
       always:
         - name: Terminate instances that were previously launched
           delegate_to: 127.0.0.1
