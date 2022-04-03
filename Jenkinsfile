@@ -12,13 +12,15 @@ pipeline {
   stages {
 
    stage ( 'only branch' ) {
-     steps {
+   when { branch pattern: "ROB-.*", comparator: "REGEXP"}
+        steps {
         sh 'env'
         sh 'echo only break'
         }
      }
 
      stage ( 'PR' ) {
+       when { branch pattern: "PR-.*", comparator: "REGEXP"}
         steps {
            sh 'env'
            sh 'echo PR'
