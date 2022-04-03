@@ -11,29 +11,29 @@ pipeline {
 
   stages {
 
-   stage { 'only branch' } {
+   stage ( 'only branch' ) {
      steps {
         sh 'env'
         sh 'echo only break'
         }
      }
 
-     stage { 'PR' } {
+     stage ( 'PR' ) {
         steps {
            sh 'env'
            sh 'echo PR'
            }
         }
 
-      stage { 'MAIN' } {
+      stage ( 'MAIN' ) {
            when { 'branch main' }
              steps {
                 sh 'env'
                 sh 'echo MAIN'
                 }
-             }
-
+           }
      }
+}
 
 //here we are hardcoding role_name as frontend as for demo purpose, But we need to understand which role has been really modified and we need nad we need to parse
 //role name, We can get that information from git commands, Here git diff HEAD@{1} --name-only | grep roles | awk -F / '{print $2}'
