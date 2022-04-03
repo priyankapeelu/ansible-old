@@ -26,7 +26,7 @@ pipeline {
         }
 
       stage ( 'MAIN' ) {
-           when { 'branch main' }
+           when { branch 'main' }
              steps {
                 sh 'env'
                 sh 'echo MAIN'
