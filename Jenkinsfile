@@ -28,11 +28,11 @@ pipeline {
 //            }
 //         }
 
-   stage('Test') {
-     steps {
-       sh '''
-         env
-          '''
-       }
-     }
-   }
+  stage('Test') {
+    steps {
+      sh '''
+        env
+      '''
+    }
+  }
+}
