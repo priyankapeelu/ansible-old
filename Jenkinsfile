@@ -9,8 +9,8 @@ pipeline {
     SSH = credentials('SSH')
   }
 
-   stages {
-//
+  stages {
+
 //    stage ( 'check ansible style checks' ) {
 //    when { branch pattern: "ROB-.*", comparator: "REGEXP"}
 //         steps {
@@ -28,12 +28,19 @@ pipeline {
 //            }
 //         }
 
-  stage('Test') {
-    steps {
-      sh '''
-        env
-      '''
-    }
-  }
-}
+      stage ('MAIN') {
+           when { branch 'main' }
+             steps {
+                sh 'env'
+                }
+           }
+      stage ( 'TAG' ) {
+        when {
+        expression { BRANCH_NAME ==~ ".*" }
+        }
+          steps {
+            sh 'env'
+             }
+         }
+     }
 }
