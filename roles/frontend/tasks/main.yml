@@ -25,7 +25,7 @@
 #Note: In src and dest, ending / is very important when you are copying directories
 
 - name: copy roboshop conf
-  ansible.builtin.copy:
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
   notify: restart nginx
