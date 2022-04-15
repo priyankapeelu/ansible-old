@@ -1,37 +1,37 @@
-- name: Print Frontend
-  ansible.builtin.debug:
-    msg: Frontend
-
 - name: Install Nginx
   ansible.builtin.yum:
     name: nginx
     state: installed
 
-- name: download and extract frontend
+- name: Download and Extract Frontend
   include_role:
     name: common
     tasks_from: download
+  vars:
+    APP_USER: root
+    APP_LOCATION: /usr/share/nginx/html
 
-- name: Cleanup old html content
-  ansible.builtin.file:
-    path: /usr/share/nginx/html
-    state: absent
+#- name: Cleanup Old HTML Content
+#  ansible.builtin.file:
+#    path: /usr/share/nginx/html
+#    state: absent
 
-#- name: copy frontend content to nginx path
+#- name: Copy the frontend content to nginx path
 #  ansible.builtin.copy:
 #    src: /tmp/frontend-main/static/
-#    dest: /usr/share/nginx/html
+#    dest: /usr/share/nginx/html/
 #    remote_src: yes
-#Note: In src and dest, ending / is very important when you are copying directories
+# Note: IN src and dest, ending / is very important when you are copying directories
 
-- name: copy roboshop conf
-  ansible.builtin.copy:
+- name: Copy RoboShop Configuration
+  ansible.builtin.template:
     src: roboshop.conf
     dest: /etc/nginx/default.d/roboshop.conf
-  notify: restart nginx
+  notify: Restart Nginx
 
-- name: restart nginx
+- name: Start Nginx Service
   ignore_errors: "{{CHECK_MODE}}"
   ansible.builtin.systemd:
     name: nginx
     state: started
+    enabled: yes
