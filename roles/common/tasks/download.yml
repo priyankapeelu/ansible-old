@@ -22,3 +22,16 @@
 #    dest: /home/roboshop/{{COMPONENT}}/
 #    remote_src: yes
 #  become_user: roboshop
+
+- name: Create App Location
+  ansible.builtin.file:
+    path: "{{APP_LOCATION}}"
+    state: directory
+  become_user: "{{APP_USER}}"
+
+- name: Download and Extract {{COMPONENT}}
+  ansible.builtin.unarchive:
+    src: http://nexus.roboshop.internal:8081/repository/{{COMPONENT}}/{{COMPONENT}}-{{APP_VERSION}}.zip
+    dest: "{{APP_LOCATION}}"
+    remote_src: yes
+  become_user: "{{APP_USER}}"
