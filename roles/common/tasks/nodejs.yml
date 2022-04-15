@@ -1,4 +1,4 @@
-- name: configure yum repos
+- name: Configure YUM repos.
   ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
 
 - name: Install NodeJS
@@ -8,17 +8,20 @@
       - gcc-c++
     state: installed
 
-- name: setup app user, download extract and copy content
-  include_role:
+- name: Setup App USer, Download and Extract {{COMPONENT}} Content
+  ansible.builtin.include_role:
     name: common
     tasks_from: download
+  vars:
+    APP_LOCATION: "/home/roboshop/{{COMPONENT}}"
+    APP_USER: roboshop
 
-- name: install nodejs dependencies
-  community.general.npm:
-    path: /home/roboshop/{{COMPONENT}}
-  become_user: roboshop
+#- name: Install NodeJS Dependencies
+#  community.general.npm:
+#    path: /home/roboshop/{{COMPONENT}}
+#  become_user: roboshop
 
-- name: systemd setup
-  include_role:
+- name: Setup SyetemD
+  ansible.builtin.include_role:
     name: common
     tasks_from: systemd
