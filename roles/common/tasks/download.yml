@@ -4,20 +4,21 @@
     comment: RoboShop Project Application User
   register: APP_USER_REGISTER
 
-- name: download and extract {{COMPONENT}}
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
-    dest: /tmp
-    remote_src: yes
-
 - name: Cleanup Old Contnent
   ansible.builtin.file:
     path: /home/roboshop/{{COMPONENT}}
     state: absent
 
-- name: Copy App content to {{COMPONENT}}
-  ansible.builtin.copy:
-    src: /tmp/{{COMPONENT}}-main/
-    dest: /home/roboshop/{{COMPONENT}}/
-    remote_src: yes
-  become_user: roboshop
+
+#- name: download and extract {{COMPONENT}}
+#  ansible.builtin.unarchive:
+#    src: https://github.com/roboshop-devops-project/{{COMPONENT}}/archive/main.zip
+#    dest: /tmp
+#    remote_src: yes
+
+#- name: Copy App content to {{COMPONENT}}
+#  ansible.builtin.copy:
+#    src: /tmp/{{COMPONENT}}-main/
+#    dest: /home/roboshop/{{COMPONENT}}/
+#    remote_src: yes
+#  become_user: roboshop
